@@ -1,0 +1,26 @@
+{
+  "name": "vidstreamer",
+  "version": "1.0.0",
+  "description": "A project for streaming video",
+  "main": "index.js",
+  "scripts": {
+    "test": "nodemon index.js",
+    "run": "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/warriorfish/vidStreamer.git"
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/warriorfish/vidStreamer/issues"
+  },
+  "homepage": "https://github.com/warriorfish/vidStreamer#readme",
+  "dependencies": {
+    "ejs": "^3.1.8",
+    "express": "^4.18.1",
+    "mongoose": "^6.4.0",
+    "nodemon": "^2.0.16"
+  }
+}
