@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 
 // Mongodb connect
 
-mongoose.connect("mongodb://localhost:27017");
+mongoose.connect("mongodb://localhost:27017/testVidStream");
 
 const db = mongoose.connection;
 db.on("error", () => {
@@ -15,7 +15,7 @@ db.once("open", () => {
 })
 
 
-const app = express()
+const app = express();
 
 app.listen(3000, () => {
     console.log("Server started on port 3000");
