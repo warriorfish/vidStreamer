@@ -103,9 +103,6 @@ dist
 # TernJS port file
 .tern-port
 
-# Directory for mongoose models
-models/
-
 #FIle for seeding the database with sample values during devlopment
 seeds.js
 
