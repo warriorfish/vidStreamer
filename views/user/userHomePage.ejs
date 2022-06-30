@@ -18,6 +18,9 @@
     <div>
         <a href="/"> Back to home </a>
         <a href="/users/<%=user._id%>/edit"> Edit user details </a>
+        <form action="/users/<%=user._id%>?_method=DELETE" method="post">
+            <button>Delete</button>
+        </form>
     </div>
 </body>
 

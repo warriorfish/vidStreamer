@@ -82,6 +82,13 @@ app.put("/users/:id", async (req, res) => {
 
 })
 
+// User delete
+app.delete("/users/:id", async (req, res) => {
+    const id = req.params.id
+    await userModel.findByIdAndDelete(id);
+    res.redirect("/")
+})
+
 app.listen(3000, () => {
     console.log("Server started on port 3000");
 })
