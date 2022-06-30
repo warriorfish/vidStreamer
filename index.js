@@ -21,13 +21,20 @@ const app = express();
 app.use(express.urlencoded({ extended: true }))
 app.set("view engine", "ejs");
 
-app.get("/", (req, res) => {
-    res.render("home.ejs")
+// Home page
+
+app.get("/", async (req, res) => {
+    const users = await userModel.find({});
+    res.render("home.ejs", { users })
 })
+
+// User creation form
 
 app.get("/users/new", (req, res) => {
     res.render("user/userSignup.ejs")
 })
+
+// User create route
 
 app.post("/users", async (req, res) => {
     const { firstName, lastName, email, age, password } = req.body
@@ -42,6 +49,13 @@ app.post("/users", async (req, res) => {
     await user.save();
     res.redirect("/");
 
+})
+
+// User page view
+app.get("/users/:id", async (req, res) => {
+    const id = req.params.id;
+    const user = await userModel.findById(id);
+    res.render("user/userHomePage.ejs", { user });
 })
 
 

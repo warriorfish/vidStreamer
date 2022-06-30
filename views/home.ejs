@@ -10,6 +10,15 @@
 
 <body>
     <a href="/users/new"> Create new user </a>
+    <ul>
+        <% users.forEach(user=> { %>
+            <li>
+                <a href="<%= `/users/${user._id}` %>">
+                    <%= `${user.firstName} ${user.lastName}` %>
+                </a>
+            </li>
+            <% }); %>
+    </ul>
 </body>
 
 </html>
