@@ -1,6 +1,7 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const userModel = require('./models/user');
+const methodOverride = require('method-override');
 
 // Mongodb connect
 
@@ -19,6 +20,7 @@ db.once("open", () => {
 const app = express();
 
 app.use(express.urlencoded({ extended: true }))
+app.use(methodOverride("_method"))
 app.set("view engine", "ejs");
 
 // Home page
@@ -44,7 +46,6 @@ app.post("/users", async (req, res) => {
         "email": email,
         "age": age,
         "password": password,
-        "videos": []
     });
     await user.save();
     res.redirect("/");
@@ -58,6 +59,28 @@ app.get("/users/:id", async (req, res) => {
     res.render("user/userHomePage.ejs", { user });
 })
 
+// User edit form
+app.get("/users/:id/edit", async (req, res) => {
+    const id = req.params.id;
+    const user = await userModel.findById(id);
+    res.render("user/userEditPage.ejs", { user });
+})
+
+// user edit route
+app.put("/users/:id", async (req, res) => {
+    const id = req.params.id
+    const { firstName, lastName, email, age, password } = req.body
+    const user = {
+        "firstName": firstName,
+        "lastName": lastName,
+        "email": email,
+        "age": age,
+        "password": password,
+    };
+    await userModel.findByIdAndUpdate(id, user)
+    res.redirect("/");
+
+})
 
 app.listen(3000, () => {
     console.log("Server started on port 3000");
